@@ -1,16 +1,16 @@
-package me.pandaism.UltimateBravery.Base;
+package me.pandaism.UltimateBravery.Items.Equipments;
 
-import me.pandaism.UltimateBravery.Resources.Items;
+import me.pandaism.UltimateBravery.Items.Item;
 
 /**
  * Created by Pandaism on 5/28/2016.
  */
-public class Jungle extends Items{
+public class Jungle extends Item {
 
     private int enchantment;
 
-    public Jungle(String name, boolean stackable, int enchantment) {
-        super(name, stackable);
+    public Jungle(String name, boolean stackable, int cost, int enchantment) {
+        super(name, stackable, cost);
         this.enchantment = enchantment;
     }
 
