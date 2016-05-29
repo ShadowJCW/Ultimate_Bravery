@@ -1,15 +1,17 @@
-package me.pandaism.UltimateBravery.Resources;
+package me.pandaism.UltimateBravery.Items;
 
 /**
  * Created by Pandaism on 5/27/2016.
  */
-public class Items {
+public class Item {
     private String name;
     private boolean stackable;
+    private int cost;
 
-    public Items(String name, boolean stackable) {
+    public Item(String name, boolean stackable, int cost) {
         this.name = name;
         this.stackable = stackable;
+        this.cost = cost;
     }
 
     public boolean getStackable() {
@@ -18,5 +20,9 @@ public class Items {
 
     public String getName() {
         return name;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }
