@@ -1,7 +1,9 @@
 package me.pandaism.UltimateBravery;
 
 import me.pandaism.UltimateBravery.Items.InitItems;
+import me.pandaism.UltimateBravery.Items.InitSummonSpells;
 import me.pandaism.UltimateBravery.Items.Item;
+import me.pandaism.UltimateBravery.Items.Spells.SummonerSpells;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,12 +13,17 @@ import java.util.Random;
  */
 public class Algorithm {
     private static InitItems items;
+    private static InitSummonSpells summonerSpells;
 
     private static ArrayList<Item> inventory;
+    private static ArrayList<SummonerSpells> spells;
+
     private static ArrayList<Item> allItems = new ArrayList<>();
     private static ArrayList<Item> boots = new ArrayList<>();
     private static ArrayList<Item> jungles = new ArrayList<>();
     private static ArrayList<Item> supports = new ArrayList<>();
+
+    private static ArrayList<SummonerSpells> summonerSpellsArray = new ArrayList<>();
 
     private static void arrayItems() {
         allItems.add(items.abyssalS);
@@ -106,6 +113,18 @@ public class Algorithm {
         supports.add(items.talismanA);
     }
 
+    private static void arraySummonerSpell() {
+        summonerSpellsArray.add(summonerSpells.barrier);
+        summonerSpellsArray.add(summonerSpells.cleanse);
+        summonerSpellsArray.add(summonerSpells.exhaust);
+        summonerSpellsArray.add(summonerSpells.flash);
+        summonerSpellsArray.add(summonerSpells.ghost);
+        summonerSpellsArray.add(summonerSpells.heal);
+        summonerSpellsArray.add(summonerSpells.ignite);
+        summonerSpellsArray.add(summonerSpells.smite);
+        summonerSpellsArray.add(summonerSpells.teleport);
+    }
+
 
     public static void chooseChampion() {
 
@@ -113,10 +132,18 @@ public class Algorithm {
 
     public static void chooseSummonersSpell() {
         items = new InitItems();
-        User user = new User();
+        summonerSpells = new InitSummonSpells();
+
+        spells = new ArrayList<>();
+
+        arraySummonerSpell();
 
         if(inventory.contains(items.skirmisherS) || inventory.contains(items.stalkerB) || inventory.contains(items.trackerK)) {
-            //user.setSummonerSpell1(smite);
+            Random random = new Random();
+
+            int i = random.nextInt(1);
+
+            spells.set(i, summonerSpells.smite);
         }
 
     }
@@ -145,6 +172,7 @@ public class Algorithm {
     public static void chooseItem() {
         items = new InitItems();
         inventory = new ArrayList<>();
+
         Random rng = new Random();
 
         int slot;
@@ -154,6 +182,7 @@ public class Algorithm {
 
         int supportSelection = rng.nextInt(2);
         int jungleSelection = rng.nextInt(5);
+
         boolean supportBoolean = false;
         boolean jungleBoolean = false;
 
@@ -191,10 +220,6 @@ public class Algorithm {
         if(jungleBoolean) {
             slot = rng.nextInt(6);
             inventory.set(slot, jungles.get(jungle));
-        }
-
-        for(int i = 0; i < 6; i++) {
-            System.out.println(inventory.get(i).getName());
         }
     }
 }
